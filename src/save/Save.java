@@ -28,7 +28,7 @@ public class Save {
         int choice = in.nextInt();
         switch (choice) {
             case 1:
-                save.add(player);
+                save.add( player);
                 break;
             case 2:
                 setSavePlayer(player);
@@ -75,8 +75,7 @@ public class Save {
     void printListSavePlayer() {
         int i = 1;
         for (Player player : save) {
-            System.out.println((i++) + " " + player.getName() + " Уровень: " + player.getLevel());
+            System.out.printf("%d. %-15s Уровень: %d опыта %d\n", i++, player.getName(), player.getLevel(), player.getExperience());
         }
     }
-
 }

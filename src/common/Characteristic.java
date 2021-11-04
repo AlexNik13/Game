@@ -56,6 +56,8 @@ public class Characteristic implements Serializable {
         this.strength = strength;
     }
 
+
+
     public int getAgility() {
         return agility;
     }
@@ -68,8 +70,21 @@ public class Characteristic implements Serializable {
         return constitution;
     }
 
+
     public void setConstitution(int constitution) {
         this.constitution = constitution;
+    }
+
+    public void addConstitution(int add) {
+        constitution += add;
+    }
+
+    public void addStrength(int add) {
+        strength += add;
+    }
+
+    public void addAgility(int add) {
+        agility += add;
     }
 
     public int getLevel() {
@@ -107,13 +122,7 @@ public class Characteristic implements Serializable {
         this.damage = damage;
     }
 
-    public double getMaxHealth() {
-        return maxHealth;
-    }
 
-    public void setMaxHealth(double maxHealth) {
-        this.maxHealth = maxHealth;
-    }
 
     public int getHealth() {
         return health;
@@ -154,4 +163,9 @@ public class Characteristic implements Serializable {
     public void setDoProtection(PartBody doProtection) {
         this.doProtection = doProtection;
     }
+
+    protected void addLevel(){
+        level++;
+    }
+
 }
