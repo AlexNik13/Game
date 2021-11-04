@@ -1,6 +1,7 @@
 package menu;
 
 import common.PartBody;
+import common.ResultBattles;
 import controller.Attack;
 import creature.Creature;
 import creature.CreatureSkeleton;
@@ -21,9 +22,10 @@ public class Menu {
     private Attack attack;
 
     private List<Creature> creatures = new ArrayList<>();
-    private Creature creature = new CreatureSkeleton(1);
+    private Creature creature ;
 
-    private Random rnd = new Random();
+    private ResultBattles resultBattles;
+
 
     Player player;
 
@@ -62,24 +64,38 @@ public class Menu {
                 "Ваши действия?\n");
 
         System.out.println("1. С криком ПОСТОРОНИСЬ напасть.");
-        System.out.println("2. Позорно убежать.");
+        System.out.println("2. Вернуться в деревню. ");
 
         int  choice = in.nextInt();
         switch (choice){
             case 1:
+                creature = new CreatureSkeleton(player.getLevel());
                 attack = new Attack(player, creature);
-                while (attack.doAttack());
-
+                do {
+                    resultBattles = attack.doAttack();
+                } while (resultBattles == null);
+                System.out.println(getBattleResult(resultBattles));
             case 2:
-                //TODO Вызов статистики
                 System.out.println("EXIT");
                 break;
         }
 
     }
 
+    private String getBattleResult(ResultBattles resultBattles) {
+        if(resultBattles == ResultBattles.VICTORY){
+            return   "Поздравляю герой ты победил!";
+        }
+
+        if(resultBattles == ResultBattles.VICTORY){
+            return "Не Повезло тебе герой. Ты проиграл.";
+        }
+
+        return "Отступить не позорно. Восстанови силы выпей эль и попробуй снова.";
+    }
+
     //TODO do make
-    public boolean ChangeCharacteristic(){
+    public boolean changeCharacteristic(){
         boolean menu = true;
         while (menu){
             player.printCharacteristic();

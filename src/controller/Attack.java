@@ -1,6 +1,7 @@
 package controller;
 
 import common.PartBody;
+import common.ResultBattles;
 import creature.Creature;
 import player.Player;
 
@@ -13,26 +14,33 @@ public class Attack {
     private Player player;
     private Creature creature;
     private Random rnd = new Random();
+    private ResultBattles resultBattles;
 
     public Attack(Player player, Creature creature) {
         this.player = player;
         this.creature = creature;
     }
 
+    public ResultBattles doAttack(){
 
-    public boolean doAttack(){
         System.out.println("1. Атаковать ");
         System.out.println("2. Позорно бежать ");
         int choice = in.nextInt();
         switch (choice){
             case 1:
-                event();
+                resultBattles = event();
                 break;
+
+            case 2:
+                return ResultBattles.RETREATED;
         }
-        return true;
+        if(resultBattles != null){
+            return resultBattles;
+        }
+        return null;
     }
 
-    public void event(){
+    public ResultBattles event(){
         System.out.println("Удар:");
         player.setDoAttack(partBody());
 
@@ -65,7 +73,7 @@ public class Attack {
 
             if(rnbAttack == 20){
                 System.out.println("Вы получили крит " + (creature.getDamage() * 2) + " урона");
-                creature.takingDamage(creature.getDamage() * 2);
+                player.takingDamage(creature.getDamage() * 2);
             } else if(rnbAttack + creature.getAttack() > player.getProtection()){
                 System.out.println("Вы получили " + creature.getDamage() + " урона");
                 player.takingDamage(creature.getDamage());
@@ -78,11 +86,18 @@ public class Attack {
 
         System.out.println("у вас " + player.getHealth() + " жизней");
         System.out.println("у твари " + creature.getHealth() + " жизней");
+
         if(!creature.isLive()){
             System.out.println("Тварь убита ");
+            return ResultBattles.VICTORY;
         }
-    }
 
+        if(player.getHealth() <= 0){
+            return ResultBattles.DEFEAT;
+        }
+
+        return null;
+    }
 
     public PartBody partBody(){
         System.out.println("1. Голова");
