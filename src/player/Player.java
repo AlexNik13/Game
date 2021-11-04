@@ -2,8 +2,9 @@ package player;
 
 import common.Characteristic;
 
-public class Player extends Characteristic  {
-    private String name;
+import java.io.Serializable;
+
+public class Player extends Characteristic implements Serializable {
     private RasaPlayer rasa;
     private TypePlayer type;
 
@@ -11,7 +12,7 @@ public class Player extends Characteristic  {
 
 
     public Player(String name, RasaPlayer rasa, TypePlayer type) {
-        this.name = name;
+        setName(name);
         this.rasa = rasa;
         this.type = type;
         stat();

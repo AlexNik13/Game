@@ -1,8 +1,9 @@
 package common;
 
 
+import java.io.Serializable;
 
-public class Characteristic {
+public class Characteristic implements Serializable {
     private String name;
     private int strength;
     private int agility;
