@@ -1,96 +1,26 @@
-package menu;
+package controller;
 
 import common.PartBody;
-import controller.Attack;
 import creature.Creature;
-import creature.CreatureSkeleton;
 import player.Player;
-import player.RasaPlayer;
-import player.TypePlayer;
 
-import java.text.BreakIterator;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Random;
 import java.util.Scanner;
 
-public class Menu {
-    private static Scanner in = new Scanner(System.in);
-    private static int choice;
-
-    private Attack attack;
-
-    private List<Creature> creatures = new ArrayList<>();
-    private Creature creature = new CreatureSkeleton(1);
-
+public class Attack {
+    private Scanner in = new Scanner(System.in);
+    private Player player;
+    private Creature creature;
     private Random rnd = new Random();
 
-    Player player;
-
-    public void startGame(){
-        System.out.print("Введите имя игрока:" );
-        String name = in.next();
-        player = new Player(name, RasaPlayer.HUMAN,TypePlayer.FIGHTER);
-        mainMenu();
+    public Attack(Player player, Creature creature) {
+        this.player = player;
+        this.creature = creature;
     }
 
 
-    public void mainMenu() {
-        while (true){
-            System.out.println("Главное меню!");
-            System.out.println("1.\tПосмотреть свои параметры.");
-            System.out.println("2.\tВойти в подземелье. ");
-            System.out.println("0.\tВыход. ");
-            choice = in.nextInt();
-            switch (choice){
-                case 0:
-
-                    break;
-                case 1:
-                    player.printCharacteristic();
-                    break;
-                case 2:
-                    dungeon();
-                    break;
-            }
-        }
-    }
-
-    public void dungeon(){
-        System.out.println( "Вы в мрачном подземелье. \n" +
-                "Впереди вы ведёте своего врага.\n" +
-                "Ваши действия?\n");
-
-        System.out.println("1. С криком ПОСТОРОНИСЬ напасть.");
-        System.out.println("2. Позорно убежать.");
-
-        int  choice = in.nextInt();
-        switch (choice){
-            case 1:
-                attack = new Attack(player, creature);
-                while (attack.doAttack());
-
-            case 2:
-                //TODO Вызов статистики
-                System.out.println("EXIT");
-                break;
-        }
-
-    }
-
-    //TODO do make
-    public boolean ChangeCharacteristic(){
-        boolean menu = true;
-        while (menu){
-            player.printCharacteristic();
-            System.out.println("");
-        }
-
-        return false;
-    }
-
-
-   /* public boolean doAttack(){
+    public boolean doAttack(){
         System.out.println("1. Атаковать ");
         System.out.println("2. Позорно бежать ");
         int choice = in.nextInt();
@@ -114,7 +44,11 @@ public class Menu {
 
         if(player.getDoAttack() != creature.getDoProtection()){
             int rnbAttack = rnd.nextInt(20) + 1;
-            if(rnbAttack + player.getAttack() > creature.getProtection()){
+
+            if(rnbAttack == 20){
+                System.out.println("Вы нанесли крит " + (player.getDamage() * 2) + " урона");
+                creature.takingDamage(player.getDamage() * 2);
+            } else if(rnbAttack + player.getAttack() > creature.getProtection()){
                 System.out.println("Вы нанесли " + player.getDamage() + " урона");
                 creature.takingDamage(player.getDamage());
             }else {
@@ -127,7 +61,12 @@ public class Menu {
 
         if(creature.getDoAttack() != player.getDoProtection()){
             int rnbAttack = rnd.nextInt(20) + 1;
-            if(rnbAttack + creature.getAttack() > player.getProtection()){
+
+
+            if(rnbAttack == 20){
+                System.out.println("Вы получили крит " + (creature.getDamage() * 2) + " урона");
+                creature.takingDamage(creature.getDamage() * 2);
+            } else if(rnbAttack + creature.getAttack() > player.getProtection()){
                 System.out.println("Вы получили " + creature.getDamage() + " урона");
                 player.takingDamage(creature.getDamage());
             }else {
@@ -166,8 +105,8 @@ public class Menu {
             case 2: return PartBody.LEGS;
         }
         return PartBody.BODY;
-    }*/
-
+    }
 
 
 }
+

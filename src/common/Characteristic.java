@@ -1,26 +1,51 @@
 package common;
 
-public class Characteristic  {
+
+
+public class Characteristic {
+    private String name;
     private int strength;
     private int agility;
     private int constitution;
+    private int level;
 
-    private double maxHealth ;
-    private double health ;
+    private int attack;
+    private int protection;
+    private int damage;
+
+
+    private double maxHealth;
+    private int health;
     private double damageModifier;
-    private int freeStatPoints;
+    private double protectionModifier;
+
+    private PartBody doAttack;
+    private PartBody doProtection;
+
 
     public Characteristic() {
         strength = 1;
         agility = 1;
         constitution = 1;
         damageModifier = 1;
+        level = 1;
+        damageModifier = 1;
+        protectionModifier = 1;
     }
 
-    public void health(){
-        health = 10 + (constitution * 5);
+    public void takingDamage(int damage){
+        health -= damage;
     }
 
+    public void printCharacteristic(){
+        System.out.println("Имя: " + name + " Уровень: " + level);
+        System.out.printf("%-13s: %d\n", "Сила" , getStrength());
+        System.out.printf("%-13s: %d\n", "Ловкость", getAgility());
+        System.out.printf("%-13s: %d\n", "Телосложение" , getConstitution());
+        System.out.printf("%-13s: %d\n", "Здоровье" , getHealth());
+        System.out.printf("%-6s: +%d . %-7s: +%d\n", "Атака" , getAttack() , "Защита" , getProtection());
+        System.out.printf("%-13s: %d\n", "Урон" ,getDamage());
+    }
 
     public int getStrength() {
         return strength;
@@ -44,5 +69,88 @@ public class Characteristic  {
 
     public void setConstitution(int constitution) {
         this.constitution = constitution;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getProtection() {
+        return protection;
+    }
+
+    public void setProtection(int protection) {
+        this.protection = protection;
+    }
+
+    public int getDamage() {
+
+        int damage =(int) (strength * damageModifier);
+
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public double getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(double maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public double getDamageModifier() {
+        return damageModifier;
+    }
+
+    public void setDamageModifier(double damageModifier) {
+        this.damageModifier = damageModifier;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public PartBody getDoAttack() {
+        return doAttack;
+    }
+
+    public void setDoAttack(PartBody doAttack) {
+        this.doAttack = doAttack;
+    }
+
+    public PartBody getDoProtection() {
+        return doProtection;
+    }
+
+    public void setDoProtection(PartBody doProtection) {
+        this.doProtection = doProtection;
     }
 }
