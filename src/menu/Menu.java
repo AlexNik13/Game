@@ -1,6 +1,5 @@
 package menu;
 
-
 import common.ResultBattles;
 import controller.Attack;
 import creature.Creature;
@@ -14,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//TODO отделить меню от логики
+
 public class Menu {
     private static Scanner in = new Scanner(System.in);
     private static int choice;
@@ -24,17 +25,14 @@ public class Menu {
     private Save save = new Save();
     private Player player;
 
-
-
     public void startGame() {
-
         System.out.println("1. Загрузить игру");
         System.out.println("2. Создать нового героя");
         System.out.println("3. Выйти");
         int choice = in.nextInt();
         switch (choice) {
             case 1:
-                if((player =  save.loadPlayer()) == null){
+                if ((player = save.loadPlayer()) == null) {
                     startGame();
                 }
                 menuVillage();
@@ -72,8 +70,6 @@ public class Menu {
                     break;
                 case 1:
                     changeCharacteristic();
-
-
                     break;
                 case 2:
                     dungeon();
@@ -88,16 +84,16 @@ public class Menu {
             player.printCharacteristic();
             System.out.println("");
             int choice = 0;
-            if(player.getFreeStatPoints() == 0){
+            if (player.getFreeStatPoints() == 0) {
                 menu = false;
-            }else {
+            } else {
                 System.out.println("1. Повысить силу");
                 System.out.println("2. Повысить ловкость");
                 System.out.println("3. Повысить телосложение ");
-                 choice = in.nextInt();
+                choice = in.nextInt();
             }
 
-            switch (choice){
+            switch (choice) {
                 case 1:
                     player.addStrength();
                     break;
@@ -111,7 +107,6 @@ public class Menu {
         }
         return false;
     }
-
 
     public void dungeon() {
         System.out.println("Вы в мрачном подземелье. \n" +
@@ -147,5 +142,4 @@ public class Menu {
         }
         return "Отступить не позорно. Восстанови силы выпей эль и попробуй снова.";
     }
-
 }

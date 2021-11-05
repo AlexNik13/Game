@@ -11,15 +11,12 @@ public class Player extends Characteristic implements Serializable {
     private int experience;
     private int freeStatPoints;
 
-
     public Player(String name, RasaPlayer rasa, TypePlayer type) {
         setName(name);
         this.rasa = rasa;
         this.type = type;
         recalculateCharacteristic();
     }
-
-
 
     public void recalculateCharacteristic(){
 
@@ -95,5 +92,4 @@ public class Player extends Characteristic implements Serializable {
             recalculateCharacteristic();
         }
     }
-
 }

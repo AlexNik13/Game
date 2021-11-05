@@ -1,5 +1,6 @@
 package common;
 
+//TODO Добавить золото монстрам и кошелек герою
 public class Gold {
     private int gold;
 

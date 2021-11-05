@@ -5,7 +5,6 @@ import common.ResultBattles;
 import creature.Creature;
 import player.Player;
 
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -85,8 +84,6 @@ public class Attack {
         System.out.println("у вас " + player.getHealth() + " жизней");
         System.out.println("у твари " + creature.getHealth() + " жизней");
 
-
-
         if (player.getHealth() <= 0) {
             return ResultBattles.DEFEAT;
         }
@@ -97,7 +94,6 @@ public class Attack {
             player.addExperience(creature.getLevel() * 10);
             return ResultBattles.VICTORY;
         }
-
         return null;
     }
 

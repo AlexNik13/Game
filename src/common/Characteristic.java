@@ -1,8 +1,8 @@
 package common;
 
-
 import java.io.Serializable;
 
+//TODO разделить на 2 класса
 public class Characteristic implements Serializable {
     private String name;
     private int strength;
@@ -56,8 +56,6 @@ public class Characteristic implements Serializable {
         this.strength = strength;
     }
 
-
-
     public int getAgility() {
         return agility;
     }
@@ -69,7 +67,6 @@ public class Characteristic implements Serializable {
     public int getConstitution() {
         return constitution;
     }
-
 
     public void setConstitution(int constitution) {
         this.constitution = constitution;
@@ -121,8 +118,6 @@ public class Characteristic implements Serializable {
     public void setDamage(int damage) {
         this.damage = damage;
     }
-
-
 
     public int getHealth() {
         return health;
