@@ -6,62 +6,59 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Save {
-    private List<Player> save;
+
+    private List<Player> loadPlayer;
+    private Set<Player> saveGame;
     private Scanner in = new Scanner(System.in);
 
-
     public Save() {
-        save = new ArrayList<>();
+        saveGame = new HashSet<>();
         loadGames();
     }
 
-    public void savePlayer(Player player) {
-        System.out.println("1. Новое сохранение");
-        System.out.println("2. Перезаписать. ");
-        System.out.println("3. Выйти. ");
-
-        int choice = in.nextInt();
-        switch (choice) {
-            case 1:
-                save.add( player);
-                break;
-            case 2:
-                setSavePlayer(player);
-                break;
-            case 3:
-
-                break;
-        }
-
-        saveGames();
-    }
 
     public Player loadPlayer() {
-        printListSavePlayer();
-        System.out.println("Кого загрузить? ");
-        int choice = in.nextInt();
-        return save.get(choice - 1);
+        if(loadPlayer.size()> 0){
+            printListSavePlayer();
+
+            System.out.println("Кого загрузить? ");
+            int choice = in.nextInt();
+            return loadPlayer.get(choice - 1);
+        }else {
+            System.out.println("Нет сохранений");
+        }
+
+        return null;
+
     }
 
     private void loadGames() {
         try (ObjectInputStream load = new ObjectInputStream(new FileInputStream("myGame.dm"))) {
-            save = (List<Player>) load.readObject();
+            saveGame = (Set<Player>) load.readObject();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        loadPlayer = new ArrayList<>(saveGame);
+    }
+
+    public void saveGames() {
+        try (ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("myGame.dm"))) {
+            save.writeObject(this.saveGame);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void saveGames() {
-        try (ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("myGame.dm"))) {
-            save.writeObject(this.save);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+
+
+    public void savePlayer(Player player) {
+        saveGame.add(player);
+        loadPlayer = new ArrayList<>(saveGame);
+        saveGames();
     }
 
     public void setSavePlayer(Player player) {
@@ -69,12 +66,12 @@ public class Save {
         System.out.println("Куда сохранить?");
         int choice = in.nextInt();
 
-        save.set(choice - 1, player);
+        loadPlayer.set(choice - 1, player);
     }
 
     void printListSavePlayer() {
         int i = 1;
-        for (Player player : save) {
+        for (Player player : loadPlayer) {
             System.out.printf("%d. %-15s Уровень: %d опыта %d\n", i++, player.getName(), player.getLevel(), player.getExperience());
         }
     }

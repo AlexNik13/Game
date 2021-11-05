@@ -34,7 +34,9 @@ public class Menu {
         int choice = in.nextInt();
         switch (choice) {
             case 1:
-                player =  save.loadPlayer();
+                if((player =  save.loadPlayer()) == null){
+                    startGame();
+                }
                 menuVillage();
                 break;
             case 2:
@@ -53,7 +55,6 @@ public class Menu {
         player = new Player(name, RasaPlayer.HUMAN, TypePlayer.FIGHTER);
         menuVillage();
     }
-
 
     public void menuVillage() {
         boolean menu = true;
@@ -88,10 +89,11 @@ public class Menu {
             System.out.println("");
             if(player.getFreeStatPoints() == 0){
                 menu = false;
+            }else {
+                System.out.println("1. Повысить силу");
+                System.out.println("2. Повысить ловкость");
+                System.out.println("3. Повысить телосложение ");
             }
-            System.out.println("1. Повысить силу");
-            System.out.println("2. Повысить ловкость");
-            System.out.println("3. Повысить телосложение ");
             int choice = in.nextInt();
             switch (choice){
                 case 1:
