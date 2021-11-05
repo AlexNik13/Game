@@ -26,9 +26,11 @@ public class BattleWithCreature {
         int choice = in.nextInt();
         switch (choice) {
             case 1:
+                clearConsole();
                 resultBattles = attack();
                 break;
             case 2:
+                clearConsole();
                 return ResultBattles.RETREATED;
         }
         if (resultBattles != null) {
@@ -124,10 +126,13 @@ public class BattleWithCreature {
         int choice = in.nextInt();
         switch (choice) {
             case 1:
+                clearConsole();
                 return PartBody.HEAD;
             case 2:
+                clearConsole();
                 return PartBody.BODY;
             case 3:
+                clearConsole();
                 return PartBody.LEGS;
         }
         return PartBody.BODY;
@@ -143,5 +148,9 @@ public class BattleWithCreature {
                 return PartBody.LEGS;
         }
         return PartBody.BODY;
+    }
+
+    private void clearConsole(){
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 }

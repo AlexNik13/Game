@@ -27,6 +27,7 @@ public class Characteristic implements Serializable {
         constitution = 1;
         level = 1;
         protectionModifier = 1;
+        damageModifier = 1;
     }
 
     public void takingDamage(int damage){

@@ -28,19 +28,26 @@ public class Menu {
         int choice = in.nextInt();
         switch (choice) {
             case 1:
+                clearConsole();
                 if ((player = save.loadPlayer()) == null) {
                     mainMenu();
                 }
                 menuVillage();
                 break;
             case 2:
+                clearConsole();
                 menuCreatePlayer();
                 break;
             case 3:
+                clearConsole();
                 save.saveGames();
                 System.exit(0);
                 break;
         }
+    }
+    
+    private void clearConsole(){
+            System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
     private void menuCreatePlayer() {
@@ -60,14 +67,17 @@ public class Menu {
             int choice = in.nextInt();
             switch (choice) {
                 case 0:
+                    clearConsole();
                     save.savePlayer(player);
                     menu = false;
                     mainMenu();
                     break;
                 case 1:
+                    clearConsole();
                     printCharacteristic();
                     break;
                 case 2:
+                    clearConsole();
                     dungeon();
                     break;
             }
@@ -81,12 +91,15 @@ public class Menu {
         int choice = in.nextInt();
         switch (choice) {
             case 1:
+                clearConsole();
                 player.addStrength();
                 break;
             case 2:
+                clearConsole();
                 player.addAgility();
                 break;
             case 3:
+                clearConsole();
                 player.addConstitution();
                 break;
         }
@@ -96,7 +109,7 @@ public class Menu {
     private void printCharacteristic() {
         player.printCharacteristic();
         System.out.println("");
-        if (player.getFreeStatPoints() == 0) {
+        if (player.getFreeStatPoints() > 0) {
             menuChangeCharacteristic();
         }
     }
@@ -112,6 +125,7 @@ public class Menu {
         int choice = in.nextInt();
         switch (choice) {
             case 1:
+                clearConsole();
                 creature = new CreatureSkeleton(player.getLevel());
                 battleWithCreature = new BattleWithCreature(player, creature);
                 do {
@@ -121,6 +135,7 @@ public class Menu {
                 System.out.println(getBattleResult(resultBattles));
                 break;
             case 2:
+                clearConsole();
                 menuVillage();
                 break;
         }
