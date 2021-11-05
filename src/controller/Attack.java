@@ -85,15 +85,17 @@ public class Attack {
         System.out.println("у вас " + player.getHealth() + " жизней");
         System.out.println("у твари " + creature.getHealth() + " жизней");
 
-        if (!creature.isLive()) {
-            System.out.println("Тварь убита ");
-            System.out.printf("Вы получили %d опыты\n", creature.getLevel() * 10);
-            player.setExperience(creature.getLevel() * 10);
-            return ResultBattles.VICTORY;
-        }
+
 
         if (player.getHealth() <= 0) {
             return ResultBattles.DEFEAT;
+        }
+
+        if (!creature.isLive()) {
+            System.out.println("Тварь убита ");
+            System.out.printf("Вы получили %d опыты\n", creature.getLevel() * 10);
+            player.addExperience(creature.getLevel() * 10);
+            return ResultBattles.VICTORY;
         }
 
         return null;

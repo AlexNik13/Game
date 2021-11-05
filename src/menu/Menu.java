@@ -87,14 +87,16 @@ public class Menu {
         while (menu) {
             player.printCharacteristic();
             System.out.println("");
+            int choice = 0;
             if(player.getFreeStatPoints() == 0){
                 menu = false;
             }else {
                 System.out.println("1. Повысить силу");
                 System.out.println("2. Повысить ловкость");
                 System.out.println("3. Повысить телосложение ");
+                 choice = in.nextInt();
             }
-            int choice = in.nextInt();
+
             switch (choice){
                 case 1:
                     player.addStrength();
@@ -127,6 +129,7 @@ public class Menu {
                 do {
                     resultBattles = attack.doAttack();
                 } while (resultBattles == null);
+                player.recalculateCharacteristic();
                 System.out.println(getBattleResult(resultBattles));
                 break;
             case 2:

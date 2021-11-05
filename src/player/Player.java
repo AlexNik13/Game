@@ -19,7 +19,9 @@ public class Player extends Characteristic implements Serializable {
         recalculateCharacteristic();
     }
 
-    private void recalculateCharacteristic(){
+
+
+    public void recalculateCharacteristic(){
 
         int attack = (getAgility() / 2) + (getLevel() / 3);
         setAttack(attack);
@@ -52,8 +54,8 @@ public class Player extends Characteristic implements Serializable {
         return experience;
     }
 
-    public void setExperience(int experience) {
-        this.experience = experience;
+    public void addExperience(int experience) {
+        this.experience += experience;
         checkLevelUp();
     }
 
@@ -64,6 +66,7 @@ public class Player extends Characteristic implements Serializable {
     }
 
     private void levelUp() {
+        System.out.println("\n--== Поздравляю. Level UP !!! ==--\n");
         addLevel();
         freeStatPoints += 3;
         recalculateCharacteristic();
