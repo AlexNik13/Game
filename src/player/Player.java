@@ -2,6 +2,7 @@ package player;
 
 import common.Characteristic;
 import common.NewLevel;
+import common.Purse;
 
 import java.io.Serializable;
 
@@ -10,6 +11,8 @@ public class Player extends Characteristic implements Serializable {
     private TypePlayer type;
     private int experience;
     private int freeStatPoints;
+
+    private Purse purse;
 
     public Player(String name, RasaPlayer rasa, TypePlayer type) {
         setName(name);

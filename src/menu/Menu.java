@@ -1,7 +1,7 @@
 package menu;
 
 import common.ResultBattles;
-import controller.Attack;
+import controller.BattleWithCreature;
 import creature.Creature;
 import creature.CreatureSkeleton;
 import player.Player;
@@ -17,8 +17,7 @@ import java.util.Scanner;
 
 public class Menu {
     private static Scanner in = new Scanner(System.in);
-    private static int choice;
-    private Attack attack;
+    private BattleWithCreature battleWithCreature;
     private List<Creature> creatures = new ArrayList<>();
     private Creature creature;
     private ResultBattles resultBattles;
@@ -58,10 +57,10 @@ public class Menu {
         boolean menu = true;
         while (true) {
             System.out.println("Главное меню!");
-            System.out.println("1.\tПосмотреть свои параметры.");
+            System.out.println("1.\tПосмотреть\\поменять свои параметры.");
             System.out.println("2.\tВойти в подземелье. ");
             System.out.println("0.\tСохраниться и выйти в главное меню. ");
-            choice = in.nextInt();
+            int choice = in.nextInt();
             switch (choice) {
                 case 0:
                     save.savePlayer(player);
@@ -69,7 +68,7 @@ public class Menu {
                     startGame();
                     break;
                 case 1:
-                    changeCharacteristic();
+                    printCharacteristic();
                     break;
                 case 2:
                     dungeon();
@@ -78,34 +77,31 @@ public class Menu {
         }
     }
 
-    public boolean changeCharacteristic() {
-        boolean menu = true;
-        while (menu) {
-            player.printCharacteristic();
-            System.out.println("");
-            int choice = 0;
-            if (player.getFreeStatPoints() == 0) {
-                menu = false;
-            } else {
-                System.out.println("1. Повысить силу");
-                System.out.println("2. Повысить ловкость");
-                System.out.println("3. Повысить телосложение ");
-                choice = in.nextInt();
-            }
-
-            switch (choice) {
-                case 1:
-                    player.addStrength();
-                    break;
-                case 2:
-                    player.addAgility();
-                    break;
-                case 3:
-                    player.addConstitution();
-                    break;
-            }
+    private void menuChangeCharacteristic() {
+        System.out.println("1. Повысить силу");
+        System.out.println("2. Повысить ловкость");
+        System.out.println("3. Повысить телосложение ");
+        int choice = in.nextInt();
+        switch (choice) {
+            case 1:
+                player.addStrength();
+                break;
+            case 2:
+                player.addAgility();
+                break;
+            case 3:
+                player.addConstitution();
+                break;
         }
-        return false;
+        printCharacteristic();
+    }
+
+    public void printCharacteristic() {
+        player.printCharacteristic();
+        System.out.println("");
+        if (player.getFreeStatPoints() == 0) {
+            menuChangeCharacteristic();
+        }
     }
 
     public void dungeon() {
@@ -120,9 +116,9 @@ public class Menu {
         switch (choice) {
             case 1:
                 creature = new CreatureSkeleton(player.getLevel());
-                attack = new Attack(player, creature);
+                battleWithCreature = new BattleWithCreature(player, creature);
                 do {
-                    resultBattles = attack.doAttack();
+                    resultBattles = battleWithCreature.doAttack();
                 } while (resultBattles == null);
                 player.recalculateCharacteristic();
                 System.out.println(getBattleResult(resultBattles));
