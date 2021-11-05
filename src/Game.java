@@ -1,16 +1,11 @@
-import common.PartBody;
-import creature.CreatureSkeleton;
 import menu.Menu;
-import player.Player;
-
-import java.util.Random;
 
 public class Game {
 
     public static void main(String[] args) {
 
         Menu menu = new Menu();
-        menu.startGame();
+        menu.mainMenu();
 
 
 

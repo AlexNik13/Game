@@ -14,8 +14,6 @@ public class Characteristic implements Serializable {
     private int protection;
     private int damage;
 
-
-    private double maxHealth;
     private int health;
     private double damageModifier;
     private double protectionModifier;
@@ -23,14 +21,11 @@ public class Characteristic implements Serializable {
     private PartBody doAttack;
     private PartBody doProtection;
 
-
     public Characteristic() {
         strength = 1;
         agility = 1;
         constitution = 1;
-        damageModifier = 1;
         level = 1;
-        damageModifier = 1;
         protectionModifier = 1;
     }
 
@@ -127,14 +122,6 @@ public class Characteristic implements Serializable {
         this.health = health;
     }
 
-    public double getDamageModifier() {
-        return damageModifier;
-    }
-
-    public void setDamageModifier(double damageModifier) {
-        this.damageModifier = damageModifier;
-    }
-
     public String getName() {
         return name;
     }
@@ -162,5 +149,4 @@ public class Characteristic implements Serializable {
     protected void addLevel(){
         level++;
     }
-
 }

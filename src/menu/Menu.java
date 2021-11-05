@@ -9,22 +9,19 @@ import player.RasaPlayer;
 import player.TypePlayer;
 import save.Save;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 //TODO отделить меню от логики
 
 public class Menu {
-    private static Scanner in = new Scanner(System.in);
+    private Scanner in = new Scanner(System.in);
     private BattleWithCreature battleWithCreature;
-    private List<Creature> creatures = new ArrayList<>();
     private Creature creature;
     private ResultBattles resultBattles;
     private Save save = new Save();
     private Player player;
 
-    public void startGame() {
+    public void mainMenu() {
         System.out.println("1. Загрузить игру");
         System.out.println("2. Создать нового героя");
         System.out.println("3. Выйти");
@@ -32,12 +29,12 @@ public class Menu {
         switch (choice) {
             case 1:
                 if ((player = save.loadPlayer()) == null) {
-                    startGame();
+                    mainMenu();
                 }
                 menuVillage();
                 break;
             case 2:
-                createPlayer();
+                menuCreatePlayer();
                 break;
             case 3:
                 save.saveGames();
@@ -46,14 +43,14 @@ public class Menu {
         }
     }
 
-    void createPlayer() {
+    private void menuCreatePlayer() {
         System.out.print("Введите имя игрока:");
         String name = in.next();
         player = new Player(name, RasaPlayer.HUMAN, TypePlayer.FIGHTER);
         menuVillage();
     }
 
-    public void menuVillage() {
+    private void menuVillage() {
         boolean menu = true;
         while (true) {
             System.out.println("Главное меню!");
@@ -65,7 +62,7 @@ public class Menu {
                 case 0:
                     save.savePlayer(player);
                     menu = false;
-                    startGame();
+                    mainMenu();
                     break;
                 case 1:
                     printCharacteristic();
@@ -96,7 +93,7 @@ public class Menu {
         printCharacteristic();
     }
 
-    public void printCharacteristic() {
+    private void printCharacteristic() {
         player.printCharacteristic();
         System.out.println("");
         if (player.getFreeStatPoints() == 0) {
@@ -104,7 +101,7 @@ public class Menu {
         }
     }
 
-    public void dungeon() {
+    private void dungeon() {
         System.out.println("Вы в мрачном подземелье. \n" +
                 "Впереди вы ведёте своего врага.\n" +
                 "Ваши действия?\n");

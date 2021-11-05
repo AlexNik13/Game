@@ -48,7 +48,7 @@ public class BattleWithCreature {
         creature.setDoProtection(rndSelectionPartBodyCreature());
     }
 
-    public ResultBattles attack() {
+    private ResultBattles attack() {
         menuSelectionKickProtection();
         playerAttack();
         creatureAttack();
@@ -117,7 +117,7 @@ public class BattleWithCreature {
         return null;
     }
 
-    public PartBody selectionPartBodyPlayer() {
+    private PartBody selectionPartBodyPlayer() {
         System.out.println("1. Голова");
         System.out.println("2. Тело");
         System.out.println("3. Конечности");
@@ -145,4 +145,3 @@ public class BattleWithCreature {
         return PartBody.BODY;
     }
 }
-

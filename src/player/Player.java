@@ -12,7 +12,6 @@ public class Player extends Characteristic implements Serializable {
     private int experience;
     private int freeStatPoints;
 
-    private Purse purse;
 
     public Player(String name, RasaPlayer rasa, TypePlayer type) {
         setName(name);
@@ -44,10 +43,6 @@ public class Player extends Characteristic implements Serializable {
 
     public int getFreeStatPoints() {
         return freeStatPoints;
-    }
-
-    public void setFreeStatPoints(int freeStatPoints) {
-        this.freeStatPoints = freeStatPoints;
     }
 
     public int getExperience() {

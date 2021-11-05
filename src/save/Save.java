@@ -19,7 +19,6 @@ public class Save {
         loadGames();
     }
 
-
     public Player loadPlayer() {
         if(loadPlayer.size()> 0){
             printListSavePlayer();
@@ -30,9 +29,7 @@ public class Save {
         }else {
             System.out.println("Нет сохранений");
         }
-
         return null;
-
     }
 
     private void loadGames() {
@@ -53,23 +50,13 @@ public class Save {
         }
     }
 
-
-
     public void savePlayer(Player player) {
         saveGame.add(player);
         loadPlayer = new ArrayList<>(saveGame);
         saveGames();
     }
 
-    public void setSavePlayer(Player player) {
-        printListSavePlayer();
-        System.out.println("Куда сохранить?");
-        int choice = in.nextInt();
-
-        loadPlayer.set(choice - 1, player);
-    }
-
-    void printListSavePlayer() {
+    private void printListSavePlayer() {
         int i = 1;
         for (Player player : loadPlayer) {
             System.out.printf("%d. %-15s Уровень: %d опыта %d\n", i++, player.getName(), player.getLevel(), player.getExperience());

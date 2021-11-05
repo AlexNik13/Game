@@ -14,5 +14,4 @@ public class NewLevel {
         experienceLevelUp.put(5, 149);
         experienceLevelUp.put(6, 199);
     }
-
 }
