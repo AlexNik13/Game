@@ -102,7 +102,7 @@ public class BattleWithCreature {
     }
 
     private void printHealth() {
-        System.out.println("у вас " + player.getHealth() + " жизней");
+        System.out.println("\nу вас " + player.getHealth() + " жизней");
         System.out.println("у твари " + creature.getHealth() + " жизней");
     }
 
@@ -153,4 +153,5 @@ public class BattleWithCreature {
     private void clearConsole(){
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
+
 }
