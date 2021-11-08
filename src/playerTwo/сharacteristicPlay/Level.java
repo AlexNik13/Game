@@ -18,6 +18,10 @@ public class Level {
         this.freeStatPoints += 3;
     }
 
+    public void addExperience(int experience) {
+        this.experience += experience;
+    }
+
     public int getExperience() {
         return experience;
     }
@@ -25,4 +29,9 @@ public class Level {
     public int getFreeStatPoints() {
         return freeStatPoints;
     }
+
+    public void minusFreeStatPoints() {
+        freeStatPoints--;
+    }
+
 }

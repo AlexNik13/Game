@@ -18,25 +18,30 @@ public class PlayerCharacteristic {
         return strength;
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
 
     public int getAgility() {
         return agility;
     }
 
-    public void setAgility(int agility) {
-        this.agility = agility;
-    }
+
 
     public int getConstitution() {
         return constitution;
     }
 
-    public void setConstitution(int constitution) {
-        this.constitution = constitution;
+    public void addStrength() {
+        this.strength += 1;
     }
+
+
+    public void addAgility() {
+        this.agility += 1;
+    }
+
+    public void addConstitution() {
+        this.constitution += 1;
+    }
+
 
 
 }
