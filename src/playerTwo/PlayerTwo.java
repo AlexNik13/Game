@@ -12,7 +12,7 @@ public class PlayerTwo  extends Level{
     public PlayerTwo() {
         characteristic = new PlayerCharacteristic();
         attack = new Attack();
-        health = new Health();
+        health = new Health(characteristic.getConstitution());
         protection = new Protection();
     }
 
