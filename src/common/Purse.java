@@ -5,6 +5,8 @@ public class Purse {
     private int gold;
     private int silver;
 
+
+
     public Purse(int gold, int silver) {
         this.gold = gold;
         this.silver = silver;
@@ -14,6 +16,8 @@ public class Purse {
         this.silver = silver;
         recalculateMani();
     }
+
+
 
     @Override
     public String toString() {
