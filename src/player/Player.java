@@ -12,6 +12,7 @@ public class Player extends Characteristic implements Serializable {
     private int experience;
     private int freeStatPoints;
 
+    private Purse purse;
 
     public Player(String name, RasaPlayer rasa, TypePlayer type) {
         setName(name);
@@ -22,7 +23,7 @@ public class Player extends Characteristic implements Serializable {
 
     public void recalculateCharacteristic(){
 
-        int attack = (getAgility() / 2) + (getLevel() / 3);
+        int attack = (getAgility() / 2) + (getLevel() / 2) + 5;
         setAttack(attack);
         int protection = (getConstitution() / 2) + (getLevel() / 10) + 10;
         setProtection(protection);
@@ -30,6 +31,10 @@ public class Player extends Characteristic implements Serializable {
         setDamage(damage);
         int health = getConstitution() * 5 + 10;
         setHealth(health);
+    }
+
+    public void addMani(Purse purse){
+        purse.addPurse(purse);
     }
 
     @Override

@@ -39,6 +39,8 @@ public class BattleWithCreature {
         return null;
     }
 
+
+
     private void menuSelectionKickProtection(){
         System.out.println("Удар:");
         player.setDoAttack(selectionPartBodyPlayer());
@@ -112,8 +114,17 @@ public class BattleWithCreature {
         }
         if (!creature.isLive()) {
             System.out.println("Тварь убита ");
-            System.out.printf("Вы получили %d опыты\n", creature.getLevel() * 10);
-            player.addExperience(creature.getLevel() * 10);
+
+            if (player.getLevel() < creature.getLevel()){
+                System.out.printf("Вы получили %d опыты\n", creature.getLevel() * 10 * 2);
+                player.addExperience(creature.getLevel() * 10 * 2);
+            } else {
+                System.out.printf("Вы получили %d опыты\n", creature.getLevel() * 10);
+                player.addExperience(creature.getLevel() * 10);
+            }
+
+            player.addMani(creature.getPurse());
+            System.out.println("Вы получили: " + creature.getPurse().toString());
             return ResultBattles.VICTORY;
         }
         return null;

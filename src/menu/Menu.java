@@ -115,9 +115,14 @@ public class Menu {
     }
 
     private void dungeon() {
+
+        creature = new CreatureSkeleton(player.getLevel());
+
         System.out.println("Вы в мрачном подземелье. \n" +
-                "Впереди вы ведёте своего врага.\n" +
+                "Впереди вы ведёте своего врага. " + creature.getName() + " " + creature.getLevel() + " уровня\n"+
                 "Ваши действия?\n");
+
+
 
         System.out.println("1. С криком ПОСТОРОНИСЬ напасть.");
         System.out.println("2. Вернуться в деревню. ");
@@ -126,7 +131,7 @@ public class Menu {
         switch (choice) {
             case 1:
                 clearConsole();
-                creature = new CreatureSkeleton(player.getLevel());
+
                 battleWithCreature = new BattleWithCreature(player, creature);
                 do {
                     resultBattles = battleWithCreature.doAttack();
