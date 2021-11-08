@@ -39,8 +39,6 @@ public class BattleWithCreature {
         return null;
     }
 
-
-
     private void menuSelectionKickProtection(){
         System.out.println("Удар:");
         player.setDoAttack(selectionPartBodyPlayer());
@@ -104,7 +102,7 @@ public class BattleWithCreature {
     }
 
     private void printHealth() {
-        System.out.println("у вас " + player.getHealth() + " жизней");
+        System.out.println("\nу вас " + player.getHealth() + " жизней");
         System.out.println("у твари " + creature.getHealth() + " жизней");
     }
 
@@ -114,17 +112,8 @@ public class BattleWithCreature {
         }
         if (!creature.isLive()) {
             System.out.println("Тварь убита ");
-
-            if (player.getLevel() < creature.getLevel()){
-                System.out.printf("Вы получили %d опыты\n", creature.getLevel() * 10 * 2);
-                player.addExperience(creature.getLevel() * 10 * 2);
-            } else {
-                System.out.printf("Вы получили %d опыты\n", creature.getLevel() * 10);
-                player.addExperience(creature.getLevel() * 10);
-            }
-
-            player.addMani(creature.getPurse());
-            System.out.println("Вы получили: " + creature.getPurse().toString());
+            System.out.printf("Вы получили %d опыты\n", creature.getLevel() * 10);
+            player.addExperience(creature.getLevel() * 10);
             return ResultBattles.VICTORY;
         }
         return null;
@@ -164,4 +153,5 @@ public class BattleWithCreature {
     private void clearConsole(){
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
+
 }
