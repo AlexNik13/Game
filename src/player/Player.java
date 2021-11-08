@@ -19,6 +19,7 @@ public class Player extends Characteristic implements Serializable {
         this.rasa = rasa;
         this.type = type;
         recalculateCharacteristic();
+        purse = new Purse(1,1);
     }
 
     public void recalculateCharacteristic(){
@@ -34,7 +35,7 @@ public class Player extends Characteristic implements Serializable {
     }
 
     public void addMani(Purse purse){
-        purse.addPurse(purse);
+        this.purse.addPurse(purse);
     }
 
     @Override
@@ -44,6 +45,7 @@ public class Player extends Characteristic implements Serializable {
 
         System.out.printf("%-13s: %d\n", "Опыт:" , getExperience());
         System.out.printf("%-13s: %d\n", "Свободных очков характеристик:" , getFreeStatPoints());
+        System.out.println(purse.toString());
     }
 
     public int getFreeStatPoints() {

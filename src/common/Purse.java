@@ -45,7 +45,7 @@ public class Purse {
     }
 
     public void addPurse (Purse purse){
-        this.gold += purse.getGold();
+        this.gold +=  purse.getGold();
         this.silver += purse.getSilver();
         recalculateMani();
     }
