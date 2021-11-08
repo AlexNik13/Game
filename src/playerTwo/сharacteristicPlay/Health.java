@@ -14,4 +14,8 @@ public class Health {
     public int getHealth() {
         return health;
     }
+
+    public void receiveDamage(int damageHealth){
+        health -= damageHealth;
+    }
 }

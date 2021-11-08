@@ -18,5 +18,11 @@ public class Level {
         this.freeStatPoints += 3;
     }
 
+    public int getExperience() {
+        return experience;
+    }
 
+    public int getFreeStatPoints() {
+        return freeStatPoints;
+    }
 }
